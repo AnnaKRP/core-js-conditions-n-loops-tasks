@@ -370,19 +370,16 @@ function getSpiralMatrix(size) {
   let top = 0;
   let bottom = size - 1;
   while (left <= right && top <= bottom) {
-    // top row
     for (let i = left; i <= right; i += 1) {
       matrix[top][i] = num;
       num += 1;
     }
     top += 1;
-    // right column
     for (let i = top; i <= bottom; i += 1) {
       matrix[i][right] = num;
       num += 1;
     }
     right -= 1;
-    // bottom row
     if (top <= bottom) {
       for (let i = right; i >= left; i -= 1) {
         matrix[bottom][i] = num;
@@ -390,7 +387,6 @@ function getSpiralMatrix(size) {
       }
       bottom -= 1;
     }
-    // right column
     if (left <= right) {
       for (let i = bottom; i >= top; i -= 1) {
         matrix[i][left] = num;
