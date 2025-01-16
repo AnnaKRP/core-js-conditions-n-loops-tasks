@@ -413,8 +413,22 @@ function getSpiralMatrix(size) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const len = matrix.length;
+  const providedMatrix = matrix;
+  const rotatedMatrix = [];
+  for (let i = 0; i < len; i += 1) {
+    rotatedMatrix[i] = [];
+    for (let j = 0; j < len; j += 1) {
+      rotatedMatrix[i][j] = matrix[len - j - 1][i];
+    }
+  }
+  for (let i = 0; i < len; i += 1) {
+    for (let j = 0; j < len; j += 1) {
+      providedMatrix[i][j] = rotatedMatrix[i][j];
+    }
+  }
+  return providedMatrix;
 }
 
 /**
@@ -452,8 +466,23 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let shuffledStr = str;
+  const { length } = str;
+  for (let iter = 1; iter <= iterations; iter += 1) {
+    let evenChars = '';
+    let oddChars = '';
+    for (let i = 0; i < length; i += 1) {
+      if (i % 2 === 0) {
+        evenChars += shuffledStr[i];
+      } else {
+        oddChars += shuffledStr[i];
+      }
+    }
+    shuffledStr = evenChars + oddChars;
+    if (shuffledStr === str) return shuffleChar(str, iterations % iter);
+  }
+  return shuffledStr;
 }
 
 /**
